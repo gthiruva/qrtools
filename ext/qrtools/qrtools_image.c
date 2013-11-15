@@ -15,7 +15,7 @@ static VALUE save(VALUE self, VALUE path)
 {
   IplImage * src;
   Data_Get_Struct(self, IplImage, src);
-  cvSaveImage(StringValuePtr(path), src);
+  cvSaveImage(StringValuePtr(path), src, NULL);
   return self;
 }
 

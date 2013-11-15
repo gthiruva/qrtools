@@ -10,3 +10,5 @@ ext/qrtools/*.so
 ext/qrtools/conftest.dSYM
 tags
 .rake_tasks
+Gemfile.lock
+qrtools-*.gem

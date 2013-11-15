@@ -392,12 +392,14 @@ namespace Galois{
                 buf->swap_col(j,i);
 
             for(i=j+1;i<count;i++){
-                Nomial *n=&(*buf->get(i,j)/(*l));
-                buf->set(i,j,n);
-                for(int k=j+1;k<count;k++){
-                    Nomial *m=&(*buf->get(i,k)-*buf->get(j,k)**n);
-                    *buf->set(i,k,m);
-                }
+	      Nomial n1 = *buf->get(i,j)/(*l);
+	      Nomial *n=&n1;
+	      buf->set(i,j,n);
+	      for(int k=j+1;k<count;k++){
+		Nomial m1 = (*buf->get(i,k)-*buf->get(j,k)**n);
+		Nomial *m=&m1;
+		*buf->set(i,k,m);
+	      }
             }
         }
         return(buf);
@@ -447,18 +449,20 @@ namespace Galois{
         for(i=0;i<lu->cols;i++){
             ret->set(i,lu->get(i,lu->cols));
         }
-
+	
         for(j=0;j<lu->cols;j++){
-            for(i=j+1;i<lu->cols;i++){
-                ret->set(i,&(*ret->get(i)-*ret->get(j)**lu->get(i,j)));
-            }
+	  for(i=j+1;i<lu->cols;i++){
+	    Nomial n1 = (*ret->get(i)-*ret->get(j)**lu->get(i,j));
+	    ret->set(i,&n1);
+	  }
         }
         for(j=lu->cols-1;j>=0;j--){
-            for(int i=j+1;i<lu->cols;i++){
-                ret->set(j,&(*ret->get(j)-
-                             *lu->get(j,i)**ret->get(i)));
-            }
-            ret->set(j,&(*ret->get(j)/(*lu->get(j,j))));
+	  for(int i=j+1;i<lu->cols;i++){
+	    Nomial n1 = (*ret->get(j) - *lu->get(j,i)**ret->get(i));
+	    ret->set(j,&n1);
+	  }
+	  Nomial n1 = (*ret->get(j)/(*lu->get(j,j)));
+	  ret->set(j,&n1);
         }
         return(ret);
     }
@@ -554,12 +558,13 @@ namespace Galois{
             
             int c,i,j;
             for(j=0,c=0;j<this->rows;j++){
-                Galois::Nomial *sigma=err->get(0);
-                for(i=1;i<errors;i++){
-                    sigma=&(*sigma+*err->get(i)*
-                            *this->_gf->exp2nomial(j*i));
-                }
-                sigma=&(*sigma+*this->_gf->exp2nomial(j*i));
+	      Galois::Nomial *sigma=err->get(0);
+	      for(i=1;i<errors;i++){
+		Nomial n1 = (*sigma+*err->get(i) * *this->_gf->exp2nomial(j*i));
+		sigma=&n1;
+	      }
+	      Nomial n1 = (*sigma+*this->_gf->exp2nomial(j*i));
+	      sigma=&n1;
                 
                 if(sigma->is_zero()){
                     if(c<errors){
@@ -578,16 +583,15 @@ namespace Galois{
         return(this->error_size);
     }
 
-    Galois::Nomial *BCH::_error_syndrome(int d)
-    {
-        Galois::Nomial *x=this->_gf->zero();
-        
-        for(int i=0;i<this->rows;i++){
-            x=&(*x+*this->get(i)*
-                *this->_gf->exp2nomial(i*d));
-        }
-        
-        return(x->dup());
+  Galois::Nomial *BCH::_error_syndrome(int d)
+  {
+    Galois::Nomial *x=this->_gf->zero();
+    
+    for(int i=0;i<this->rows;i++){
+      Nomial n1 = (*x+*this->get(i)* *this->_gf->exp2nomial(i*d));
+      x=&n1;
     }
-
+    
+    return(x->dup());
+  } 
 }

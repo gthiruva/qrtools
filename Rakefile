@@ -3,22 +3,22 @@
 require 'rubygems'
 require 'hoe'
 
-kind = Config::CONFIG['DLEXT']
+kind = RbConfig::CONFIG['DLEXT']
 windows = RUBY_PLATFORM =~ /mswin/i ? true : false
 
 EXT = "ext/qrtools/qrtools.#{kind}"
 
 require './lib/qrtools/version'
 
-HOE = Hoe.new('qrtools', QRTools::VERSION) do |p|
-  p.developer('Aaron Patterson', 'aaronp@rubyforge.org')
-  p.clean_globs = [
+HOE = Hoe.spec 'qrtools' do
+  developer('Aaron Patterson', 'aaronp@rubyforge.org')
+  clean_globs = [
     'ext/qrtools/Makefile',
     'ext/qrtools/*.{o,so,bundle,a,log,dll}',
     'ext/qrtools/conftest.dSYM',
   ]
-  p.extra_deps      = [['png', '>= 1.1.0']]
-  p.spec_extras = { :extensions => ["ext/qrtools/extconf.rb"] }
+  extra_deps      = [['png', '>= 1.1.0']]
+  spec_extras = { :extensions => ["ext/qrtools/extconf.rb"] }
 end
 
 task 'ext/qrtools/Makefile' do
