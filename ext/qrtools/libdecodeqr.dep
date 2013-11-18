@@ -46,7 +46,7 @@
 	".\galois.h"\
 	".\imagereader.h"\
 	".\qrerror.h"\
-	{$(INCLUDE)}"cv.h"\
+	{$(INCLUDE)}"opencv/cv.h"\
 	{$(INCLUDE)}"cvcompat.h"\
 	{$(INCLUDE)}"cvtypes.h"\
 	{$(INCLUDE)}"cxcore.h"\
@@ -68,7 +68,7 @@
 	".\qrerror.h"\
 	".\qrtypes.h"\
 	".\version.h"\
-	{$(INCLUDE)}"cv.h"\
+	{$(INCLUDE)}"opencv/cv.h"\
 	{$(INCLUDE)}"cvcompat.h"\
 	{$(INCLUDE)}"cvtypes.h"\
 	{$(INCLUDE)}"cxcore.h"\

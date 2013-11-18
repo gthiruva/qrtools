@@ -18,7 +18,7 @@
 #include <stdio.h>
 #endif
 
-#include <cv.h>
+#include <opencv/cv.h>
 #include <memory.h>
 #include "qrerror.h"
 #include "container.h"

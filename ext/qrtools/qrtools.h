@@ -6,7 +6,7 @@
 #include <ruby.h>
 #include <decodeqr.h>
 #include <qrencode.h>
-#include <highgui.h>
+#include <opencv/highgui.h>
 
 #include <qrtools_image.h>
 #include <qrtools_decoder.h>
