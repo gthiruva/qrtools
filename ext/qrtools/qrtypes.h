@@ -19,14 +19,14 @@
 #define QR_LEVEL_H 2
 #define QR_LEVEL_Q 3
 
-#define QR_MODE_NUMBER 1
-#define QR_MODE_ALPHABET 2
-#define QR_MODE_JOINT 3
-#define QR_MODE_8BIT 4
-#define QR_MODE_FNC1_1 5
-#define QR_MODE_ECI 7
-#define QR_MODE_KANJIS 8
-#define QR_MODE_FNC1_2 9
+#define QR_MODE_NUMBER   QR_MODE_NUM
+#define QR_MODE_ALPHABET QR_MODE_AN
+#define QR_MODE_JOINT    QR_MODE_AN
+#define QR_MODE_8BIT     QR_MODE_8
+#define QR_MODE_FNC1_1   QR_MODE_FNC1FIRST
+// #define QR_MODE_ECI 7
+#define QR_MODE_KANJIS   QR_MODE_KANJI
+#define QR_MODE_FNC1_2   QR_MODE_FNC1SECOND
 
 typedef void * QrDecoderHandle;
 typedef struct{
