@@ -5,14 +5,14 @@ require 'mkmf'
 LIBDIR = RbConfig::CONFIG['libdir']
 INCLUDEDIR = RbConfig::CONFIG['includedir']
 
-HEADER_DIRS = [LIBDIR]
+HEADER_DIRS = [INCLUDEDIR]
 #    '/opt/local/include/opencv',
 #]
 
 HEADER_DIRS += `pkg-config --cflags opencv`.split.collect { |i| if i.start_with?("-I") then i[2..-1] else i end }
 HEADER_DIRS += `pkg-config --cflags libqrencode`.split.collect { |i| if i.start_with?("-I") then i[2..-1] else i end }
 
-LIB_DIRS = [INCLUDEDIR]
+LIB_DIRS = [LIBDIR]
 #  LIBDIR,
 #  '/opt/local/lib',
 #]
